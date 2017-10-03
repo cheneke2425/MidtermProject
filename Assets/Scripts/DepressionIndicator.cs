@@ -2,16 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.UI;
+
 public class DepressionIndicator : MonoBehaviour {
 
+	public Text UIText;
+
 	float timeRemaining = 20f;
-	int numberPercentage = 10;
+	int numberPercentage = 0;
 
 
 	// Use this for initialization
 	void Start () {
 		
-		Debug.Log("Depression Level: " + numberPercentage.ToString() + "0%");
+		UIText.text = "Depression Level: " + numberPercentage.ToString() + "0%";
 		
 	}
 	
@@ -22,13 +26,13 @@ public class DepressionIndicator : MonoBehaviour {
 
 		if (timeRemaining < 0.99f)
 		{
-			numberPercentage -= 1;
-			Debug.Log("Depression Level: " + numberPercentage.ToString() + "0%");
+			numberPercentage += 1;
+			UIText.text = "Depression Level: " + numberPercentage.ToString() + "0%";
 
 			timeRemaining = 20f;
 		}
 		
-		if (numberPercentage < 0)
+		if (numberPercentage == 10)
 		{
 			Lose();
 		}
@@ -37,26 +41,37 @@ public class DepressionIndicator : MonoBehaviour {
 
 	void Lose()
 	{
-		Debug.Log("You Lose");
+		UIText.text = "You Lose";
 	}
 
-	void OnTriggerEnter(Collider itemInfo)
+	void OnTriggerStay(Collider itemInfo)
 	{
-		if (itemInfo.CompareTag("Clue"))
+		UIText.text = "Press 'SPACE' to pick up";
+
+		if (Input.GetKey(KeyCode.Space))
 		{
-			numberPercentage += 1;
-			Debug.Log("You find a clue and become slighly less depressed! " +
-					  "Depression Level: " + numberPercentage.ToString() + "0%");
-			timeRemaining = 20f;
-		}
-		else if (itemInfo.CompareTag("BadStuff"))
-		{
-			numberPercentage -= 1;
-			Debug.Log("You find something very bad and become more depressed! " +
-					  "Depression Level: " + numberPercentage.ToString() + "0%");
-			timeRemaining = 20f;
+			if (itemInfo.CompareTag("Clue"))
+			{
+				numberPercentage -= 1;
+				UIText.text = "You find something good and become slighly less depressed! " +
+						  "Depression Level: " + numberPercentage.ToString() + "0%";
+				timeRemaining = 20f;
+			}
+			else if (itemInfo.CompareTag("BadStuff"))
+			{
+				numberPercentage += 1;
+				UIText.text = "You find something very bad and become more depressed! " +
+						  "Depression Level: " + numberPercentage.ToString() + "0%";
+				timeRemaining = 20f;
+			}
+			else if (itemInfo.CompareTag("Cat"))
+			{
+				UIText.text = "You've found the cat! You win!";
+			}
+
+			itemInfo.gameObject.SetActive(false);
 		}
 
-		itemInfo.gameObject.SetActive(false);
 	}
+
 }
