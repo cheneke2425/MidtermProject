@@ -36,7 +36,8 @@ public class DepressionIndicator : MonoBehaviour {
 		{
 			Lose();
 		}
-		
+
+
 	}
 
 	void Lose()
@@ -56,6 +57,8 @@ public class DepressionIndicator : MonoBehaviour {
 				UIText.text = "You find something good and become slighly less depressed! " +
 						  "Depression Level: " + numberPercentage.ToString() + "0%";
 				timeRemaining = 20f;
+
+				StartCoroutine(changeTextAfterSeconds(2, "Depression Level: " + numberPercentage.ToString() + "0%"));
 			}
 			else if (itemInfo.CompareTag("BadStuff"))
 			{
@@ -63,6 +66,8 @@ public class DepressionIndicator : MonoBehaviour {
 				UIText.text = "You find something very bad and become more depressed! " +
 						  "Depression Level: " + numberPercentage.ToString() + "0%";
 				timeRemaining = 20f;
+
+				StartCoroutine(changeTextAfterSeconds(2, "Depression Level: " + numberPercentage.ToString() + "0%"));
 			}
 			else if (itemInfo.CompareTag("Cat"))
 			{
@@ -72,6 +77,17 @@ public class DepressionIndicator : MonoBehaviour {
 			itemInfo.gameObject.SetActive(false);
 		}
 
+	}
+
+	void OnTriggerExit()
+	{
+		UIText.text = "Depression Level: " + numberPercentage.ToString() + "0%";
+	}
+
+	IEnumerator changeTextAfterSeconds(int sec, string newText)
+	{
+		yield return new WaitForSeconds(sec);
+		UIText.text = newText;
 	}
 
 }
