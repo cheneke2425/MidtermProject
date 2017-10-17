@@ -47,7 +47,7 @@ public class DepressionIndicator : MonoBehaviour {
 
 	void OnTriggerStay(Collider itemInfo)
 	{
-		UIText.text = "Press 'SPACE' to pick up";
+		UIText.text = "Press 'SPACE' to examine " + itemInfo.gameObject.name;
 
 		if (Input.GetKey(KeyCode.Space))
 		{
@@ -69,12 +69,30 @@ public class DepressionIndicator : MonoBehaviour {
 
 				StartCoroutine(changeTextAfterSeconds(2, "Depression Level: " + numberPercentage.ToString() + "0%"));
 			}
+			else if (itemInfo.CompareTag("Couch"))
+			{
+				numberPercentage += 1;
+				UIText.text = "Normally your cat would be sleeping on the couch.\nBut he is not here today.\nYou become more depressed." +
+						  "Depression Level: " + numberPercentage.ToString() + "0%";
+				timeRemaining = 20f;
+
+				StartCoroutine(changeTextAfterSeconds(4, "Depression Level: " + numberPercentage.ToString() + "0%"));
+			}
+			else if (itemInfo.CompareTag("AC"))
+			{
+				numberPercentage -= 1;
+				UIText.text = "You see some white fur behind the AC. Your cat was here before." +
+						  "Depression Level: " + numberPercentage.ToString() + "0%";
+				timeRemaining = 20f;
+
+				StartCoroutine(changeTextAfterSeconds(3, "Depression Level: " + numberPercentage.ToString() + "0%"));
+			}
 			else if (itemInfo.CompareTag("Cat"))
 			{
 				UIText.text = "You've found the cat! You win!";
 			}
 
-			itemInfo.gameObject.SetActive(false);
+			itemInfo.gameObject.GetComponent<BoxCollider>().enabled = false;
 		}
 
 	}

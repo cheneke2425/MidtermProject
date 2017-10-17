@@ -16,7 +16,7 @@ public class ModelRotation : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		targetPos =  - GetComponentInParent<Rigidbody>().velocity;
+		targetPos =  - GetComponentInParent<CharacterController>().velocity;
 
 		Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetPos, rotationSpeed * Time.deltaTime, 0.0f);
 		transform.rotation = Quaternion.LookRotation(newDirection);

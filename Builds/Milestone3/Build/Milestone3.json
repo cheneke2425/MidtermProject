@@ -1,0 +1,9 @@
+{
+"TOTAL_MEMORY": 268435456,
+"dataUrl": "Milestone3.data.unityweb",
+"asmCodeUrl": "Milestone3.asm.code.unityweb",
+"asmMemoryUrl": "Milestone3.asm.memory.unityweb",
+"asmFrameworkUrl": "Milestone3.asm.framework.unityweb",
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20"
+}

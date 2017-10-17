@@ -7,6 +7,8 @@ TagManager:
   - Clue
   - BadStuff
   - Cat
+  - AC
+  - Couch
   layers:
   - Default
   - TransparentFX
