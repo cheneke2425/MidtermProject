@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class DepressionIndicator : MonoBehaviour {
 
 	public Text UIText;
+	public Text depressionIndicator;
 
 	float timeRemaining = 20f;
 	int numberPercentage = 0;
@@ -15,7 +16,7 @@ public class DepressionIndicator : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		
-		UIText.text = "Depression Level: " + numberPercentage.ToString() + "0%";
+		depressionIndicator.text = "Depression Level: " + numberPercentage.ToString() + "0%";
 		
 	}
 	
@@ -27,11 +28,11 @@ public class DepressionIndicator : MonoBehaviour {
 		if (timeRemaining < 0.99f)
 		{
 			numberPercentage += 1;
-			UIText.text = "Depression Level: " + numberPercentage.ToString() + "0%";
+			depressionIndicator.text = "Depression Level: " + numberPercentage.ToString() + "0%";
 
-			timeRemaining = 20f;
+			timeRemaining = 15f;
 		}
-		
+
 		if (numberPercentage == 10)
 		{
 			Lose();
@@ -43,6 +44,7 @@ public class DepressionIndicator : MonoBehaviour {
 	void Lose()
 	{
 		UIText.text = "You Lose";
+
 	}
 
 	void OnTriggerStay(Collider itemInfo)
@@ -54,38 +56,44 @@ public class DepressionIndicator : MonoBehaviour {
 			if (itemInfo.CompareTag("Clue"))
 			{
 				numberPercentage -= 1;
-				UIText.text = "You find something good and become slighly less depressed! " +
-						  "Depression Level: " + numberPercentage.ToString() + "0%";
+				UIText.text = "You find something good and become slighly less depressed! ";
+				depressionIndicator.text = "Depression Level: " + numberPercentage.ToString() + "0%";
 				timeRemaining = 20f;
 
-				StartCoroutine(changeTextAfterSeconds(2, "Depression Level: " + numberPercentage.ToString() + "0%"));
+				//StartCoroutine(deleteTextAfterSeconds(2));
 			}
 			else if (itemInfo.CompareTag("BadStuff"))
 			{
 				numberPercentage += 1;
-				UIText.text = "You find something very bad and become more depressed! " +
-						  "Depression Level: " + numberPercentage.ToString() + "0%";
+				UIText.text = "You find something very bad and become more depressed! ";
+				depressionIndicator.text = "Depression Level: " + numberPercentage.ToString() + "0%";
 				timeRemaining = 20f;
 
-				StartCoroutine(changeTextAfterSeconds(2, "Depression Level: " + numberPercentage.ToString() + "0%"));
+				//StartCoroutine(deleteTextAfterSeconds(2));
 			}
 			else if (itemInfo.CompareTag("Couch"))
 			{
 				numberPercentage += 1;
-				UIText.text = "Normally your cat would be sleeping on the couch.\nBut he is not here today.\nYou become more depressed." +
-						  "Depression Level: " + numberPercentage.ToString() + "0%";
+				UIText.text = "Normally your cat would be sleeping on the couch.\nBut he is not here today.\nYou become more depressed.";
+				depressionIndicator.text = "Depression Level: " + numberPercentage.ToString() + "0%";
 				timeRemaining = 20f;
 
-				StartCoroutine(changeTextAfterSeconds(4, "Depression Level: " + numberPercentage.ToString() + "0%"));
+				//StartCoroutine(deleteTextAfterSeconds(5));
 			}
 			else if (itemInfo.CompareTag("AC"))
 			{
-				numberPercentage -= 1;
-				UIText.text = "You see some white fur behind the AC. Your cat was here before." +
-						  "Depression Level: " + numberPercentage.ToString() + "0%";
+				if (numberPercentage == 0)
+				{
+					numberPercentage = 0;
+				}
+				else {
+					numberPercentage -= 1;
+				}
+				UIText.text = "You see some white fur behind the AC. Your cat was here before.";
+				depressionIndicator.text = "Depression Level: " + numberPercentage.ToString() + "0%";
 				timeRemaining = 20f;
 
-				StartCoroutine(changeTextAfterSeconds(3, "Depression Level: " + numberPercentage.ToString() + "0%"));
+				//StartCoroutine(deleteTextAfterSeconds(5));
 			}
 			else if (itemInfo.CompareTag("Cat"))
 			{
@@ -99,13 +107,13 @@ public class DepressionIndicator : MonoBehaviour {
 
 	void OnTriggerExit()
 	{
-		UIText.text = "Depression Level: " + numberPercentage.ToString() + "0%";
+		depressionIndicator.text = "Depression Level: " + numberPercentage.ToString() + "0%";
 	}
 
-	IEnumerator changeTextAfterSeconds(int sec, string newText)
+	IEnumerator deleteTextAfterSeconds(int sec)
 	{
 		yield return new WaitForSeconds(sec);
-		UIText.text = newText;
+		UIText.text = "";
 	}
 
 }
