@@ -67,7 +67,7 @@ public class DepressionIndicator : MonoBehaviour {
 				insanityIndicator.text = "Insanity: " + numberPercentage.ToString() + "0%";
 				timeRemaining = 10f;
 
-				//StartCoroutine(deleteTextAfterSeconds(5));
+				itemInfo.gameObject.GetComponent<BoxCollider>().enabled = false;
 			}
 			else if (itemInfo.CompareTag("AC"))
 			{
@@ -77,21 +77,33 @@ public class DepressionIndicator : MonoBehaviour {
 				insanityIndicator.text = "Insanity: " + numberPercentage.ToString() + "0%";
 				timeRemaining = 10f;
 
-				//StartCoroutine(deleteTextAfterSeconds(5));
+				itemInfo.gameObject.GetComponent<BoxCollider>().enabled = false;
 			}
 			else if (itemInfo.CompareTag("Table"))
 			{
 				numberPercentage += 2;
-				UIText.text = "A dead rat on the dinint table. Gross.\nSeems like the blood is still fresh.";
+				UIText.text = "A dead rat on the dining table. Gross.\nSeems like the blood is still fresh.";
 				insanityIndicator.text = "Insanity: " + numberPercentage.ToString() + "0%";
 				timeRemaining = 10f;
+
+				itemInfo.gameObject.GetComponent<BoxCollider>().enabled = false;
+			}
+			else if (itemInfo.CompareTag("Newspaper"))
+			{
+				numberPercentage += 1;
+				UIText.text = "Under the newspapers you find a sticky note." +
+					"\nThe password to the safe is written on it.";
+				insanityIndicator.text = "Insanity: " + numberPercentage.ToString() + "0%";
+				timeRemaining = 10f;
+
+				itemInfo.gameObject.GetComponent<BoxCollider>().enabled = false;
 			}
 			else if (itemInfo.CompareTag("Cat"))
 			{
 				UIText.text = "You've found the cat! You win!";
 			}
 
-			itemInfo.gameObject.GetComponent<BoxCollider>().enabled = false;
+
 		}
 
 	}

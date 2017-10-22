@@ -10,6 +10,8 @@ TagManager:
   - AC
   - Couch
   - Table
+  - Safe
+  - Newspaper
   layers:
   - Default
   - TransparentFX
