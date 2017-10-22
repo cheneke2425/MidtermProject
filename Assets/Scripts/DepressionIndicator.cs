@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class DepressionIndicator : MonoBehaviour {
 
 	public Text UIText;
-	public Text depressionIndicator;
+	public Text insanityIndicator;
 
 	float timeRemaining = 20f;
 	int numberPercentage = 0;
@@ -16,7 +16,7 @@ public class DepressionIndicator : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		
-		depressionIndicator.text = "Depression Level: " + numberPercentage.ToString() + "0%";
+		insanityIndicator.text = "Insanity: " + numberPercentage.ToString() + "0%";
 		
 	}
 	
@@ -28,9 +28,9 @@ public class DepressionIndicator : MonoBehaviour {
 		if (timeRemaining < 0.99f)
 		{
 			numberPercentage += 1;
-			depressionIndicator.text = "Depression Level: " + numberPercentage.ToString() + "0%";
+			insanityIndicator.text = "Insanity: " + numberPercentage.ToString() + "0%";
 
-			timeRemaining = 15f;
+			timeRemaining = 10f;
 		}
 
 		if (numberPercentage == 10)
@@ -53,34 +53,7 @@ public class DepressionIndicator : MonoBehaviour {
 
 		if (Input.GetKey(KeyCode.Space))
 		{
-			if (itemInfo.CompareTag("Clue"))
-			{
-				numberPercentage -= 1;
-				UIText.text = "You find something good and become slighly less depressed! ";
-				depressionIndicator.text = "Depression Level: " + numberPercentage.ToString() + "0%";
-				timeRemaining = 20f;
-
-				//StartCoroutine(deleteTextAfterSeconds(2));
-			}
-			else if (itemInfo.CompareTag("BadStuff"))
-			{
-				numberPercentage += 1;
-				UIText.text = "You find something very bad and become more depressed! ";
-				depressionIndicator.text = "Depression Level: " + numberPercentage.ToString() + "0%";
-				timeRemaining = 20f;
-
-				//StartCoroutine(deleteTextAfterSeconds(2));
-			}
-			else if (itemInfo.CompareTag("Couch"))
-			{
-				numberPercentage += 1;
-				UIText.text = "Normally your cat would be sleeping on the couch.\nBut he is not here today.\nYou become more depressed.";
-				depressionIndicator.text = "Depression Level: " + numberPercentage.ToString() + "0%";
-				timeRemaining = 20f;
-
-				//StartCoroutine(deleteTextAfterSeconds(5));
-			}
-			else if (itemInfo.CompareTag("AC"))
+			if (itemInfo.CompareTag("Couch"))
 			{
 				if (numberPercentage == 0)
 				{
@@ -89,11 +62,29 @@ public class DepressionIndicator : MonoBehaviour {
 				else {
 					numberPercentage -= 1;
 				}
-				UIText.text = "You see some white fur behind the AC. Your cat was here before.";
-				depressionIndicator.text = "Depression Level: " + numberPercentage.ToString() + "0%";
-				timeRemaining = 20f;
+				UIText.text = "Normally your cat would be sleeping on the couch.\nBut he is not here today." +
+					"\nMaybe hiding in some corners?\nHe loves hiding.";
+				insanityIndicator.text = "Insanity: " + numberPercentage.ToString() + "0%";
+				timeRemaining = 10f;
 
 				//StartCoroutine(deleteTextAfterSeconds(5));
+			}
+			else if (itemInfo.CompareTag("AC"))
+			{
+				numberPercentage += 1;
+				UIText.text = "You see cockroach bodies piling up behind the AC.\nMost cockroaches in your house come from the kitchen." +
+					"\nWhy are they here?\nWhat has your cat been doing?";
+				insanityIndicator.text = "Insanity: " + numberPercentage.ToString() + "0%";
+				timeRemaining = 10f;
+
+				//StartCoroutine(deleteTextAfterSeconds(5));
+			}
+			else if (itemInfo.CompareTag("Table"))
+			{
+				numberPercentage += 2;
+				UIText.text = "A dead rat on the dinint table. Gross.\nSeems like the blood is still fresh.";
+				insanityIndicator.text = "Insanity: " + numberPercentage.ToString() + "0%";
+				timeRemaining = 10f;
 			}
 			else if (itemInfo.CompareTag("Cat"))
 			{
@@ -107,7 +98,8 @@ public class DepressionIndicator : MonoBehaviour {
 
 	void OnTriggerExit()
 	{
-		depressionIndicator.text = "Depression Level: " + numberPercentage.ToString() + "0%";
+		UIText.text = "";
+		insanityIndicator.text = "Insanity: " + numberPercentage.ToString() + "0%";
 	}
 
 	IEnumerator deleteTextAfterSeconds(int sec)

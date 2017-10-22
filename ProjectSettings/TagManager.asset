@@ -9,6 +9,7 @@ TagManager:
   - Cat
   - AC
   - Couch
+  - Table
   layers:
   - Default
   - TransparentFX
