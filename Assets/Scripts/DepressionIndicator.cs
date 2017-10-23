@@ -14,6 +14,8 @@ public class DepressionIndicator : MonoBehaviour
 	int numberPercentage = 0;
 
 	public bool interactedWithNewspaper = false;
+	public bool hasPassword = false;
+	public bool hasKey = false;
 
 
 	// Use this for initialization
@@ -52,6 +54,11 @@ public class DepressionIndicator : MonoBehaviour
 
 	}
 
+	void Win()
+	{
+
+	}
+
 	void OnTriggerStay(Collider itemInfo)
 	{
 		UIText.text = "Press 'SPACE' to examine " + itemInfo.gameObject.name;
@@ -72,29 +79,69 @@ public class DepressionIndicator : MonoBehaviour
 		}
 		else if (itemInfo.CompareTag("Table"))
 		{
-			insanityIncreases(itemInfo.gameObject, 1,
+			insanityIncreases(itemInfo.gameObject, 2,
 							  "A dead rat on the dining table. Gross." +
 							  "\nSeems like the blood is still fresh.");
 		}
-		else if (itemInfo.CompareTag("Newspaper"))
+		else if (itemInfo.CompareTag("Books"))
 		{
 
 			if (interactedWithNewspaper == false)
 			{
 				insanityIncreases(itemInfo.gameObject, 1,
-								  "You see scratched newpaper scattering on the floor, covered with bloodmarks" +
-								  "\nWhere did your cat get all these newspapers?");
+								  "You see scratches book pages scattering on the floor, covered with bloodmarks" +
+								  "\nWhere did your cat get all these pages?");
 				if (Input.GetKey(KeyCode.Space))
 				{
-					StartCoroutine(restoreTriggerAfterSeconds(5, itemInfo.gameObject));
+					interactedWithNewspaper = true;
 				}
+
+				StartCoroutine(restoreTriggerAfterSeconds(5, itemInfo.gameObject));
 
 			}
 			else {
 				insanityDecreases(itemInfo.gameObject, 1,
-				  "Under the newspapers you find a sticky note." +
-				  "\nThe password to the safe is written on it.");
+				  "Under a piece of paper you find a sticky note." +
+				  "\nSome kind of passcode is written on it.");
+
+				hasPassword = true;
 			}
+		}
+		else if (itemInfo.CompareTag("Safe"))
+		{
+			if (hasPassword == false)
+			{
+				insanityIncreases(itemInfo.gameObject, 1,
+								  "You don't remember you have a safe in the study, but it is here." +
+								  "\nAnd you don't have the password to it.");
+
+				StartCoroutine(restoreTriggerAfterSeconds(5, itemInfo.gameObject));
+
+			}
+			else {
+				insanityDecreases(itemInfo.gameObject, 1,
+								  "You open the safe with the password." +
+								  "\nInside the safe there is a key.");
+
+				hasKey = true;
+
+			}
+		}
+		else if (itemInfo.CompareTag("Door"))
+		{
+			if (hasKey == false)
+			{
+				insanityIncreases(itemInfo.gameObject, 1,
+								  "Your bedroom door is locked. Weird." +
+								  "\nYou have to find the key.");
+
+				StartCoroutine(restoreTriggerAfterSeconds(5, itemInfo.gameObject));
+			}
+			else {
+
+				Debug.Log("You win.");
+			}
+
 		}
 		else if (itemInfo.CompareTag("Cat"))
 		{
@@ -117,10 +164,11 @@ public class DepressionIndicator : MonoBehaviour
 
 	IEnumerator restoreTriggerAfterSeconds(int sec, GameObject gameObj)
 	{
-		interactedWithNewspaper = true;
-
-		yield return new WaitForSeconds(sec);
-		gameObj.GetComponent<BoxCollider>().enabled = true;
+		if (Input.GetKey(KeyCode.Space))
+		{
+			yield return new WaitForSeconds(sec);
+			gameObj.GetComponent<BoxCollider>().enabled = true;
+		}
 	}
 
 	void insanityIncreases(GameObject obj, int incrementNum, string displayText)

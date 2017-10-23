@@ -273,6 +273,24 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &39175653 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: 6c1ea921aae75423ba50b06f22912da8, type: 3}
+  m_PrefabInternal: {fileID: 1579352283}
+--- !u!64 &39175657
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 39175653}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 1
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 6c1ea921aae75423ba50b06f22912da8, type: 3}
 --- !u!1 &61079120
 GameObject:
   m_ObjectHideFlags: 0
@@ -1696,8 +1714,8 @@ GameObject:
   - component: {fileID: 698877046}
   - component: {fileID: 698877045}
   m_Layer: 0
-  m_Name: Newspaper
-  m_TagString: Newspaper
+  m_Name: Book Pages
+  m_TagString: Books
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2642,6 +2660,24 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1287407356}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1319827824 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100004, guid: c2d7211c088bf4b3684aefc76b8de0b7, type: 3}
+  m_PrefabInternal: {fileID: 1942734558}
+--- !u!64 &1319827828
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1319827824}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300002, guid: c2d7211c088bf4b3684aefc76b8de0b7, type: 3}
 --- !u!1001 &1347173648
 Prefab:
   m_ObjectHideFlags: 0
@@ -2800,7 +2836,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 2, z: 2}
+  m_Size: {x: 3.95, y: 1.1, z: 3.67}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1355607482
 MeshFilter:
@@ -2905,6 +2941,42 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1413881879}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1453122521 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100010, guid: c2d7211c088bf4b3684aefc76b8de0b7, type: 3}
+  m_PrefabInternal: {fileID: 1942734558}
+--- !u!64 &1453122525
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1453122521}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300008, guid: c2d7211c088bf4b3684aefc76b8de0b7, type: 3}
+--- !u!1 &1471904714 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100006, guid: c2d7211c088bf4b3684aefc76b8de0b7, type: 3}
+  m_PrefabInternal: {fileID: 1942734558}
+--- !u!64 &1471904718
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1471904714}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300004, guid: c2d7211c088bf4b3684aefc76b8de0b7, type: 3}
 --- !u!4 &1508870588 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: be29a1453440048f4be86f85a62c9f98, type: 3}
@@ -3274,7 +3346,7 @@ GameObject:
   - component: {fileID: 1666394028}
   m_Layer: 0
   m_Name: RoomDoor
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3559,6 +3631,24 @@ Light:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: be29a1453440048f4be86f85a62c9f98, type: 3}
   m_PrefabInternal: {fileID: 1989421173}
+--- !u!1 &1850665165 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100012, guid: c2d7211c088bf4b3684aefc76b8de0b7, type: 3}
+  m_PrefabInternal: {fileID: 1942734558}
+--- !u!64 &1850665169
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1850665165}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300010, guid: c2d7211c088bf4b3684aefc76b8de0b7, type: 3}
 --- !u!1 &1878613030
 GameObject:
   m_ObjectHideFlags: 0
@@ -4086,6 +4176,8 @@ MonoBehaviour:
   UIText: {fileID: 651916484}
   insanityIndicator: {fileID: 583254545}
   interactedWithNewspaper: 0
+  hasPassword: 0
+  hasKey: 0
 --- !u!114 &2067971985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4164,6 +4256,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2070803375 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100008, guid: c2d7211c088bf4b3684aefc76b8de0b7, type: 3}
+  m_PrefabInternal: {fileID: 1942734558}
+--- !u!64 &2070803379
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2070803375}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300006, guid: c2d7211c088bf4b3684aefc76b8de0b7, type: 3}
 --- !u!1 &2072247406
 GameObject:
   m_ObjectHideFlags: 0
@@ -4483,3 +4593,21 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: be29a1453440048f4be86f85a62c9f98, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &2132367703 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100002, guid: c2d7211c088bf4b3684aefc76b8de0b7, type: 3}
+  m_PrefabInternal: {fileID: 1942734558}
+--- !u!64 &2132367707
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2132367703}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: c2d7211c088bf4b3684aefc76b8de0b7, type: 3}

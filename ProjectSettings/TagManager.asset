@@ -11,7 +11,8 @@ TagManager:
   - Couch
   - Table
   - Safe
-  - Newspaper
+  - Books
+  - Door
   layers:
   - Default
   - TransparentFX
