@@ -9,6 +9,8 @@ public class DepressionIndicator : MonoBehaviour
 
 	public Text UIText;
 	public Text insanityIndicator;
+	public Text losingText;
+	public Text winningText;
 
 	float timeRemaining = 20f;
 	int numberPercentage = 0;
@@ -23,6 +25,9 @@ public class DepressionIndicator : MonoBehaviour
 	{
 
 		insanityIndicator.text = "Insanity: " + numberPercentage.ToString() + "0%";
+		UIText.text = "";
+		losingText.text = "";
+		winningText.text = "";
 
 	}
 
@@ -50,12 +55,23 @@ public class DepressionIndicator : MonoBehaviour
 
 	void Lose()
 	{
-		UIText.text = "You Lose";
+		timeRemaining -= 0f;
+
+		if (numberPercentage != 10)
+		{
+			numberPercentage = 10;
+		}
+
+		losingText.text = "YOU CAN NEVER FIND YOUR CAT";
 
 	}
 
 	void Win()
 	{
+
+		timeRemaining -= 0f;
+
+		winningText.text = "YOUR CAT IS SMILING AT YOU IN YOUR ROOM\nCONGRATULATIONS YOU HAVE FOUND HIM";
 
 	}
 
@@ -139,9 +155,20 @@ public class DepressionIndicator : MonoBehaviour
 			}
 			else {
 
-				Debug.Log("You win.");
+				if (Input.GetKey(KeyCode.Space))
+				{
+					Win();
+
+				}
+
 			}
 
+		}
+		else if (itemInfo.CompareTag("Shelf"))
+		{
+			insanityIncreases(itemInfo.gameObject, 1,
+			                  "The shelf is covered with bloodmarks and scratches." +
+			                  "\nYou really wish you did not see this");
 		}
 		else if (itemInfo.CompareTag("Cat"))
 		{
