@@ -81,14 +81,17 @@ public class DepressionIndicator : MonoBehaviour
 
 			if (interactedWithNewspaper == false)
 			{
-				insanityDecreases(itemInfo.gameObject, 1,
+				insanityIncreases(itemInfo.gameObject, 1,
 								  "You see scratched newpaper scattering on the floor, covered with bloodmarks" +
 								  "\nWhere did your cat get all these newspapers?");
-				
-				StartCoroutine(restoreTriggerAfterSeconds(5, itemInfo.gameObject, interactedWithNewspaper));
+				if (Input.GetKey(KeyCode.Space))
+				{
+					StartCoroutine(restoreTriggerAfterSeconds(5, itemInfo.gameObject));
+				}
+
 			}
 			else {
-				insanityIncreases(itemInfo.gameObject, 1,
+				insanityDecreases(itemInfo.gameObject, 1,
 				  "Under the newspapers you find a sticky note." +
 				  "\nThe password to the safe is written on it.");
 			}
@@ -112,14 +115,12 @@ public class DepressionIndicator : MonoBehaviour
 		UIText.text = "";
 	}
 
-	IEnumerator restoreTriggerAfterSeconds(int sec, GameObject gameObj, bool interacted)
+	IEnumerator restoreTriggerAfterSeconds(int sec, GameObject gameObj)
 	{
-		if (Input.GetKey(KeyCode.Space))
-		{
-			interacted = true;
-			yield return new WaitForSeconds(sec);
-			gameObj.GetComponent<BoxCollider>().enabled = true;
-		}
+		interactedWithNewspaper = true;
+
+		yield return new WaitForSeconds(sec);
+		gameObj.GetComponent<BoxCollider>().enabled = true;
 	}
 
 	void insanityIncreases(GameObject obj, int incrementNum, string displayText)

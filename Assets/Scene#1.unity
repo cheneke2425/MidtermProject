@@ -252,7 +252,7 @@ Light:
   m_SpotAngle: 52
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -484,7 +484,7 @@ Light:
   m_SpotAngle: 83
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -3090,7 +3090,7 @@ Light:
   m_SpotAngle: 54
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -3175,7 +3175,7 @@ Light:
   m_SpotAngle: 36
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -3240,7 +3240,7 @@ Light:
   m_SpotAngle: 70
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -4085,6 +4085,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIText: {fileID: 651916484}
   insanityIndicator: {fileID: 583254545}
+  interactedWithNewspaper: 0
 --- !u!114 &2067971985
 MonoBehaviour:
   m_ObjectHideFlags: 0
