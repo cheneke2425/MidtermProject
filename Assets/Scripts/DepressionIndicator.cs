@@ -14,6 +14,7 @@ public class DepressionIndicator : MonoBehaviour
 
 	float timeRemaining = 20f;
 	int numberPercentage = 0;
+	float exposure = 0f;
 
 	public bool interactedWithNewspaper = false;
 	public bool hasPassword = false;
@@ -47,22 +48,27 @@ public class DepressionIndicator : MonoBehaviour
 
 		if (numberPercentage == 10)
 		{
+			timeRemaining -= 0f;
+
+			if (numberPercentage != 10)
+			{
+				numberPercentage = 10;
+			}
+
 			Lose();
 		}
+
+		exposure = numberPercentage * 0.1f;
+		RenderSettings.skybox.SetFloat("_Exposure", exposure);
 
 
 	}
 
 	void Lose()
 	{
-		timeRemaining -= 0f;
-
-		if (numberPercentage != 10)
-		{
-			numberPercentage = 10;
-		}
-
 		losingText.text = "YOU CAN NEVER FIND YOUR CAT";
+
+		GetComponent<PlayerMovement>().enabled = false;
 
 	}
 
@@ -72,6 +78,8 @@ public class DepressionIndicator : MonoBehaviour
 		timeRemaining -= 0f;
 
 		winningText.text = "YOUR CAT IS SMILING AT YOU IN YOUR ROOM\nCONGRATULATIONS YOU HAVE FOUND HIM";
+
+		GetComponent<PlayerMovement>().enabled = false;
 
 	}
 
