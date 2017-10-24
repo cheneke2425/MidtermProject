@@ -11,10 +11,14 @@ public class DepressionIndicator : MonoBehaviour
 	public Text insanityIndicator;
 	public Text losingText;
 	public Text winningText;
+	public GameObject bloodBackground;
+
+	public Material mat;
 
 	float timeRemaining = 20f;
 	int numberPercentage = 0;
-	float exposure = 0f;
+	float exposure;
+	float brightness;
 
 	public bool interactedWithNewspaper = false;
 	public bool hasPassword = false;
@@ -24,11 +28,14 @@ public class DepressionIndicator : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
-
+		exposure = 0f;
+		brightness = 0.3f;
 		insanityIndicator.text = "Insanity: " + numberPercentage.ToString() + "0%";
 		UIText.text = "";
 		losingText.text = "";
 		winningText.text = "";
+
+		bloodBackground.active = false;
 
 	}
 
@@ -61,6 +68,8 @@ public class DepressionIndicator : MonoBehaviour
 		exposure = numberPercentage * 0.1f;
 		RenderSettings.skybox.SetFloat("_Exposure", exposure);
 
+		brightness += numberPercentage * 0.03f;
+		mat.SetColor("_EmissionColor", new Color(0.09f, 0.3f, 0.3f) * brightness);
 
 	}
 
@@ -69,6 +78,8 @@ public class DepressionIndicator : MonoBehaviour
 		losingText.text = "YOU CAN NEVER FIND YOUR CAT";
 
 		GetComponent<PlayerMovement>().enabled = false;
+
+		bloodBackground.active = true;
 
 	}
 
@@ -80,6 +91,8 @@ public class DepressionIndicator : MonoBehaviour
 		winningText.text = "YOUR CAT IS SMILING AT YOU IN YOUR ROOM\nCONGRATULATIONS YOU HAVE FOUND HIM";
 
 		GetComponent<PlayerMovement>().enabled = false;
+
+		bloodBackground.active = true;
 
 	}
 
