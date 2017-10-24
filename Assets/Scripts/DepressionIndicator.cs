@@ -132,7 +132,7 @@ public class DepressionIndicator : MonoBehaviour
 			if (interactedWithNewspaper == false)
 			{
 				insanityIncreases(itemInfo.gameObject, 1,
-								  "You see scratches book pages scattering on the floor, covered with bloodmarks." +
+								  "Scratched book pages all over the floor, covered with bloodmarks." +
 								  "\nWhere did your cat get all these pages?");
 				if (Input.GetKey(KeyCode.Space))
 				{
@@ -146,8 +146,11 @@ public class DepressionIndicator : MonoBehaviour
 				insanityDecreases(itemInfo.gameObject, 1,
 				  "Under a piece of paper you find a sticky note." +
 				  "\nSome kind of passcode is written on it.");
-
-				hasPassword = true;
+				
+				if (Input.GetKey(KeyCode.Space))
+				{
+					hasPassword = true;
+				}
 			}
 		}
 		else if (itemInfo.CompareTag("Safe"))
@@ -155,7 +158,7 @@ public class DepressionIndicator : MonoBehaviour
 			if (hasPassword == false)
 			{
 				insanityIncreases(itemInfo.gameObject, 1,
-								  "You don't remember you have a safe in the study, but it is here." +
+								  "You don't remember you have a safe in the study, but here it is." +
 								  "\nAnd you don't have the password to it.");
 
 				StartCoroutine(restoreTriggerAfterSeconds(5, itemInfo.gameObject));
@@ -165,8 +168,11 @@ public class DepressionIndicator : MonoBehaviour
 				insanityDecreases(itemInfo.gameObject, 1,
 								  "You open the safe with the password." +
 								  "\nInside the safe there is a key.");
-
-				hasKey = true;
+				
+				if (Input.GetKey(KeyCode.Space))
+				{
+					hasKey = true;
+				}
 
 			}
 		}
