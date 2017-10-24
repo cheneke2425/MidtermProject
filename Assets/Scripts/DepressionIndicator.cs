@@ -15,10 +15,15 @@ public class DepressionIndicator : MonoBehaviour
 
 	public Material mat;
 
+	public AudioClip meow;
+	public AudioClip clue;
+	public AudioClip horror;
+	public AudioClip lose;
+	AudioSource source;
+
 	float timeRemaining = 20f;
 	int numberPercentage = 0;
 	float exposure;
-	float brightness;
 
 	public bool interactedWithNewspaper = false;
 	public bool hasPassword = false;
@@ -29,7 +34,6 @@ public class DepressionIndicator : MonoBehaviour
 	void Start()
 	{
 		exposure = 0f;
-		brightness = 0.3f;
 		insanityIndicator.text = "Insanity: " + numberPercentage.ToString() + "0%";
 		UIText.text = "";
 		losingText.text = "";
@@ -50,7 +54,7 @@ public class DepressionIndicator : MonoBehaviour
 			numberPercentage += 1;
 			insanityIndicator.text = "Insanity: " + numberPercentage.ToString() + "0%";
 
-			timeRemaining = 10f;
+			timeRemaining = 15f;
 		}
 
 		if (numberPercentage == 10)
@@ -65,16 +69,17 @@ public class DepressionIndicator : MonoBehaviour
 			Lose();
 		}
 
-		exposure = numberPercentage * 0.1f;
+		exposure = Mathf.Lerp(exposure, numberPercentage * 0.1f, 0.5f * Time.deltaTime);
 		RenderSettings.skybox.SetFloat("_Exposure", exposure);
 
-		brightness += numberPercentage * 0.03f;
-		mat.SetColor("_EmissionColor", new Color(0.09f, 0.3f, 0.3f) * brightness);
+		DynamicGI.UpdateEnvironment();
 
 	}
 
 	void Lose()
 	{
+		GetComponent<AudioSource>().PlayOneShot(lose, 1f);
+
 		losingText.text = "YOU CAN NEVER FIND YOUR CAT";
 
 		GetComponent<PlayerMovement>().enabled = false;
@@ -85,6 +90,7 @@ public class DepressionIndicator : MonoBehaviour
 
 	void Win()
 	{
+		GetComponent<AudioSource>().PlayOneShot(meow, 0.3f);
 
 		timeRemaining -= 0f;
 
@@ -126,7 +132,7 @@ public class DepressionIndicator : MonoBehaviour
 			if (interactedWithNewspaper == false)
 			{
 				insanityIncreases(itemInfo.gameObject, 1,
-								  "You see scratches book pages scattering on the floor, covered with bloodmarks" +
+								  "You see scratches book pages scattering on the floor, covered with bloodmarks." +
 								  "\nWhere did your cat get all these pages?");
 				if (Input.GetKey(KeyCode.Space))
 				{
@@ -223,6 +229,8 @@ public class DepressionIndicator : MonoBehaviour
 	{
 		if (Input.GetKey(KeyCode.Space))
 		{
+			GetComponent<AudioSource>().PlayOneShot(horror, 1f);
+
 			numberPercentage += incrementNum;
 			UIText.text = displayText;
 			insanityIndicator.text = "Insanity: " + numberPercentage.ToString() + "0%";
@@ -236,6 +244,8 @@ public class DepressionIndicator : MonoBehaviour
 	{
 		if (Input.GetKey(KeyCode.Space))
 		{
+			GetComponent<AudioSource>().PlayOneShot(clue, 1f);
+
 			if (numberPercentage <= decrementNum)
 			{
 				numberPercentage = 0;
